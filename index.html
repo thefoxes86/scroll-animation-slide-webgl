@@ -202,25 +202,20 @@
       uniform float defaultStatus;
       uniform sampler2D texture1;
       uniform float time;
-      uniform vec4 resolution;
-      varying vec2 vUv;
-      varying vec3 vPosition;
+      uniform vec2 resolution;
       varying float vOpacity;
-
+      varying vec3 vUv;
 
       void main() {
-
-          vec4 t = texture(texture1, vUv);
-
-          gl_FragColor = t;
-
+          vec4 t = texture2D(texture1, vUv);
+          gl_FragColor = vec4(1, 1, 1, vOpacity);
       }
     </script>
     <script type="x-shader/x-vertex" id="vertexShader">
       attribute float vertexDisplacement;
       uniform float defaultStatus;
       varying float vOpacity;
-      varying vec2 vUv;
+      varying vec3 vUv;
       void main() {
 
           vUv = position;
