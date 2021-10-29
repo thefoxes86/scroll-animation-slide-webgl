@@ -1,214 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
     <title>Scroll Animation</title>
 
     <style>
-        body {
-            overflow: hidden;
-            background: rgb(2,0,36);
-        }
+      body {
+        overflow: hidden;
+        background: rgb(2, 0, 36);
+      }
 
-        .back {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
+      .back {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
 
-        .b1 {
-            background: linear-gradient(90deg, rgba(255, 237, 211,1) 0%, rgb(255, 205, 196) 100%);
-            opacity: 0;
-        }
-        .b2 {
-            background: linear-gradient(90deg, rgb(251, 255, 211) 0%, rgb(255, 231, 196) 100%);
-            opacity: 0;
-        }
-        .b3 {
-            background: linear-gradient(90deg, rgb(232, 255, 211) 0%, rgb(228, 255, 196) 100%);
-            opacity: 0;
-        }
-        .b4 {
-            background: linear-gradient(90deg, rgb(211, 250, 255) 0%, rgb(196, 255, 237)100%);
-            opacity: 0;
-        }
-        .b5 {
-            background: linear-gradient(90deg, rgb(211, 215, 255) 0%, rgb(196, 233, 255)100%);
-            opacity: 0;
-        }
+      .b1 {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 237, 211, 1) 0%,
+          rgb(255, 205, 196) 100%
+        );
+        opacity: 0;
+      }
+      .b2 {
+        background: linear-gradient(
+          90deg,
+          rgb(251, 255, 211) 0%,
+          rgb(255, 231, 196) 100%
+        );
+        opacity: 0;
+      }
+      .b3 {
+        background: linear-gradient(
+          90deg,
+          rgb(232, 255, 211) 0%,
+          rgb(228, 255, 196) 100%
+        );
+        opacity: 0;
+      }
+      .b4 {
+        background: linear-gradient(
+          90deg,
+          rgb(211, 250, 255) 0%,
+          rgb(196, 255, 237) 100%
+        );
+        opacity: 0;
+      }
+      .b5 {
+        background: linear-gradient(
+          90deg,
+          rgb(211, 215, 255) 0%,
+          rgb(196, 233, 255) 100%
+        );
+        opacity: 0;
+      }
 
-        canvas {
-            background: transparent;
-            top: 0;
-            left: 0;
-            position: fixed;
-            z-index: 1;
- 
-        }
+      canvas {
+        background: transparent;
+        top: 0;
+        left: 0;
+        position: fixed;
+        z-index: 1;
+      }
 
-        .n {
-            position: absolute;
-            top: 100px;
-            left: 100px;
-        }
+      .n {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+      }
 
-        .n h2 {
-            font-family: 'Abril Fatface', cursive;
-            color: rgb(44, 44, 44);
-            font-size: 28px;
-        }
+      .n h2 {
+        font-family: "Abril Fatface", cursive;
+        color: rgb(44, 44, 44);
+        font-size: 28px;
+      }
 
-        .n p {
-            font-size: 12px;
-            margin-top: -20px;
-            color: rgb(44, 44, 44);
+      .n p {
+        font-size: 12px;
+        margin-top: -20px;
+        color: rgb(44, 44, 44);
+      }
 
-        }
+      .n > img {
+        width: 60px;
+        visibility: hidden;
+      }
 
-        .n > img {
-            width: 60px;
-            visibility: hidden;
-        }
+      .n1 {
+        top: 200px;
+        opacity: 0;
+      }
+      .n2 {
+        top: 300px;
+        opacity: 0;
+      }
+      .n3 {
+        top: 400px;
+        opacity: 0;
+      }
+      .n4 {
+        top: 500px;
+        opacity: 0;
+      }
 
-        .n1 {
-            top: 200px;
-            opacity: 0;
-        }
-        .n2 {
-            top: 300px;
-            opacity: 0;
-        }
-        .n3 {
-            top: 400px;
-            opacity: 0;
-        }
-        .n4 {
-            top: 500px;
-            opacity: 0;
-        }
+      #wrap {
+        margin-top: 20%;
+        display: flex;
+        align-items: center;
+      }
+      #block {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background: green;
+      }
+      .nav {
+        position: fixed;
+        z-index: 100;
+        top: 40%;
+        right: 10px;
+        list-style-type: none;
+      }
 
-        #wrap {
-            margin-top: 20%;
-            display: flex;
-            align-items: center;
-        }
-        #block {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            background: green;
-        }
-        .nav {
-            position: fixed;
-            z-index: 100;
-            top: 40%;
-            right: 10px;
-            list-style-type: none;
-        }
+      .nav li {
+        width: 10px;
+        height: 30px;
+        border-radius: 2px;
+        margin-top: 5px;
+        background-color: grey;
+        display: block;
+        transition: all 0.15s ease-in-out;
+      }
 
-        .nav li {
-            width: 10px;
-            height: 30px;
-            border-radius: 2px;
-            margin-top: 5px;
-            background-color:grey;
-            display: block;
-            transition: all 0.15s ease-in-out;
-        }
-
-        .nav > li:hover {
-            height: 40px;
-        }
+      .nav > li:hover {
+        height: 40px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <ul class="nav">
-        <li data-nav="0"></li>
-        <li data-nav="1"></li>
-        <li data-nav="2"></li>
-        <li data-nav="3"></li>
-        <li data-nav="4"></li>
+      <li data-nav="0"></li>
+      <li data-nav="1"></li>
+      <li data-nav="2"></li>
+      <li data-nav="3"></li>
+      <li data-nav="4"></li>
     </ul>
     <div class="canvas"></div>
     <div id="wrap">
-        <div class="n">
-            <h2>Slide 1</h2>
-            <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
-            <img src="img/1.jpg" alt="">
-        </div>
-        <div class="n n1">
-            <h2>Slide 2</h2>
-            <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
-            <img src="img/2.jpg" alt="">
-        </div>
-        <div class="n n2">
-            <h2>Slide 3</h2>
-            <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
-            <img src="img/3.jpg" alt="">
-        </div>
-        <div class="n n3">
-            <h2>Slide 4</h2>
-            <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
-            <img src="img/4.jpg" alt="">
-        </div>
-        <div class="n n4">
-            <h2>Slide 5</h2>
-            <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
-            <img src="img/5.jpg" alt="">
-        </div>
+      <div class="n">
+        <h2>Slide 1</h2>
+        <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
+        <img src="img/1.jpg" alt="" />
+      </div>
+      <div class="n n1">
+        <h2>Slide 2</h2>
+        <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
+        <img src="img/2.jpg" alt="" />
+      </div>
+      <div class="n n2">
+        <h2>Slide 3</h2>
+        <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
+        <img src="img/3.jpg" alt="" />
+      </div>
+      <div class="n n3">
+        <h2>Slide 4</h2>
+        <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
+        <img src="img/4.jpg" alt="" />
+      </div>
+      <div class="n n4">
+        <h2>Slide 5</h2>
+        <p>scopri questo lavoro bellissimo di Selene Zamberoni</p>
+        <img src="img/5.jpg" alt="" />
+      </div>
     </div>
     <div class="back b1"></div>
     <div class="back b2"></div>
     <div class="back b3"></div>
     <div class="back b4"></div>
     <div class="back b5"></div>
-    
-    <script src="three.js-master/build/three.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" type="text/javascript"></script>
+
+    <script
+      src="three.js-master/build/three.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+      type="text/javascript"
+    ></script>
     <script type="x-shader/x-fragment" id="fragmentShader">
-        uniform float defaultStatus;
-        uniform sampler2D texture1;
-        uniform float time;
-        uniform vec4 resolution;
-        varying vec2 vUv;
-        varying vec3 vPosition;
-        varying float vOpacity;
+      uniform float defaultStatus;
+      uniform sampler2D texture1;
+      uniform float time;
+      uniform vec4 resolution;
+      varying vec2 vUv;
+      varying vec3 vPosition;
+      varying float vOpacity;
 
 
-        void main() 
-   
-            vec4 t = texture(texture1, vUv);
-            
-            gl_FragColor = t;
+      void main() {
 
-        }
+          vec4 t = texture(texture1, vUv);
+
+          gl_FragColor = t;
+
+      }
     </script>
     <script type="x-shader/x-vertex" id="vertexShader">
-        attribute float vertexDisplacement;
-        uniform float defaultStatus;
-        varying float vOpacity;
-        varying vec2 vUv;
-        void main() {
+      attribute float vertexDisplacement;
+      uniform float defaultStatus;
+      varying float vOpacity;
+      varying vec2 vUv;
+      void main() {
 
-            vUv = position;
-            vOpacity = vertexDisplacement;
+          vUv = position;
+          vOpacity = vertexDisplacement;
 
-            vec3 p = position;
+          vec3 p = position;
 
-            p.x += sin(vertexDisplacement) * 20.0;
-            p.y += cos(vertexDisplacement) * 20.0;
-            
-            vect modelViewPosition = modelViewMatrix * vec4(position * 1.0);
-            gl_position = projectionMatrix * modelViewPosition;
-        }
+          p.x += sin(vertexDisplacement) * 20.0;
+          p.y += cos(vertexDisplacement) * 20.0;
+
+          vect modelViewPosition = modelViewMatrix * vec4(position * 1.0);
+          gl_position = projectionMatrix * modelViewPosition;
+      }
     </script>
     <script src="app.js" type="module"></script>
-    
-</body>
+  </body>
 </html>
